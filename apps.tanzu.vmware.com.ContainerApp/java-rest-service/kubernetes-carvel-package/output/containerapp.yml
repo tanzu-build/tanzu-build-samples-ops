@@ -8,12 +8,12 @@ metadata:
   name: java-rest-service
 spec:
   content:
-    buildTimestamp: "2024-06-28T20:17:11Z"
+    buildTimestamp: "2024-06-28T20:36:15Z"
     gitCommit: a8eb347f25733ac05f5d7d908f205c1bca72df7a
     gitURL: github.com/tanzu-build/tanzu-build-samples.git
     packageRefName: java-rest-service.apps.local
-    summary: git:a8eb347 @ 2024-06-28T20:17:11Z
-    version: 20240628.2017.11849
+    summary: git:a8eb347 @ 2024-06-28T20:36:15Z
+    version: 20240628.2036.15947
   image: marygabry1508/java-rest-service@sha256:e4a3c1fe91ee7be2a092ffc63c013dc1e9c39200558e6612c1360004a99964b4
   ports:
   - name: main
@@ -48,7 +48,7 @@ spec:
   - apiGroup: data.packaging.carvel.dev
     for: kubernetes.delete
     kind: Package
-    name: java-rest-service.apps.local.20240628.2017.11849
+    name: java-rest-service.apps.local.20240628.2036.15947
   - for: kubernetes.delete
     kind: Secret
     name: java-rest-service-values
