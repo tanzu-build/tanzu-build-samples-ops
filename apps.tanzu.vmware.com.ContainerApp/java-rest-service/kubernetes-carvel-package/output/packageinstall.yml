@@ -10,7 +10,7 @@ spec:
   packageRef:
     refName: java-rest-service.apps.local
     versionSelection:
-      constraints: 20240628.1955.655
+      constraints: 20240628.1958.52671
   serviceAccountName: carvel-package-installer
   values:
   - secretRef:
