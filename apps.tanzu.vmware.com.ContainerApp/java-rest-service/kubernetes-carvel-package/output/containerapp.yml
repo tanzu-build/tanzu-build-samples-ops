@@ -2,18 +2,15 @@ apiVersion: apps.tanzu.vmware.com/v1
 kind: ContainerApp
 metadata:
   annotations:
-    apps.tanzu.vmware.com/promotable: ""
-    apps.tanzu.vmware.com/promote-group: ContainerApp/java-rest-service
     containerapp.apps.tanzu.vmware.com/class: kubernetes
   name: java-rest-service
 spec:
   content:
-    buildTimestamp: "2024-07-05T16:24:52Z"
-    gitCommit: 4a28eb79755ffbb16f1923d75c9832e93442e702
+    buildTimestamp: "2024-07-05T16:27:44Z"
+    gitCommit: b087fa9043174e97309b55c8e6d3d03e6a22a99a
     gitURL: github.com/tanzu-build/tanzu-build-samples.git
-    packageRefName: java-rest-service.apps.local
-    summary: git:4a28eb7 @ 2024-07-05T16:24:52Z
-    version: 20240705.1624.52088
+    summary: git:b087fa9 @ 2024-07-05T16:27:44Z
+    version: 20240705.1627.44594
   image: marygabry1508/java-rest-service@sha256:0d1589d215d0bc481881242ef25aad22a7e18dde65e07d3fb05fd11086121a1a
   ports:
   - name: main
@@ -29,33 +26,40 @@ spec:
   - for: kubernetes.service-target
     kind: Service
     name: java-rest-service
-  - for: kubernetes.scale-replicas
-    keyPath: .data['values.yml']->[yaml].replicas
-    kind: Secret
-    name: java-rest-service-values
-  - for: kubernetes.scale-resources
-    keyPath: .data['values.yml']->[yaml].resources
-    kind: Secret
-    name: java-rest-service-values
-  - for: kubernetes.set-secret-env
-    keyPath: .data['values.yml']->[yaml].secretEnv
-    kind: Secret
-    name: java-rest-service-values
-  - apiGroup: packaging.carvel.dev
-    for: kubernetes.delete
-    kind: PackageInstall
+  - apiGroup: apps
+    for: kubernetes.scale-replicas
+    keyPath: .spec.replicas
+    kind: Deployment
     name: java-rest-service
-  - apiGroup: data.packaging.carvel.dev
+  - apiGroup: apps
+    for: kubernetes.scale-resources
+    keyPath: .spec.template.spec.containers[?(@.name=='workload')].resources.limits
+    kind: Deployment
+    name: java-rest-service
+  - apiGroup: apps
+    for: kubernetes.scale-resources
+    keyPath: .spec.template.spec.containers[?(@.name=='workload')].resources.requests
+    kind: Deployment
+    name: java-rest-service
+  - apiGroup: apps
+    for: kubernetes.set-secret-env
+    keyPath: .spec.template.spec.containers[?(@.name=='workload')].env
+    kind: Deployment
+    name: java-rest-service
+  - apiGroup: apps
     for: kubernetes.delete
-    kind: Package
-    name: java-rest-service.apps.local.20240705.1624.52088
+    kind: Deployment
+    name: java-rest-service
+  - for: kubernetes.delete
+    kind: Service
+    name: java-rest-service
+  - apiGroup: policy
+    for: kubernetes.delete
+    kind: PodDisruptionBudget
+    name: java-rest-service
   - for: kubernetes.delete
     kind: Secret
-    name: java-rest-service-values
-  - for: kubernetes.set-content-hash
-    keyPath: .data['values.yml']->[yaml].contentHash
-    kind: Secret
-    name: java-rest-service-values
+    name: java-rest-service-registry
   resources:
     cpu: 300m
     memory: 1Gi
