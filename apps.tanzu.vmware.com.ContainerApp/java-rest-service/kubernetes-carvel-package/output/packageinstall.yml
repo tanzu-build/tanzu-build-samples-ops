@@ -1,0 +1,21 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    apps.tanzu.vmware.com/promotable: ""
+    apps.tanzu.vmware.com/promote-group: ContainerApp/java-rest-service
+  creationTimestamp: null
+  name: java-rest-service
+spec:
+  packageRef:
+    refName: java-rest-service.apps.local
+    versionSelection:
+      constraints: 20240705.1624.52088
+  serviceAccountName: carvel-package-installer
+  values:
+  - secretRef:
+      name: java-rest-service-values
+status:
+  conditions: null
+  friendlyDescription: ""
+  observedGeneration: 0
