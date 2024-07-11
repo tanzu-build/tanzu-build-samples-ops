@@ -16,14 +16,14 @@ spec:
   template:
     metadata:
       annotations:
-        containerapp.apps.tanzu.vmware.com/content-summary: git:b087fa9 @ 2024-07-05T16:27:44Z
+        containerapp.apps.tanzu.vmware.com/content-summary: git:b087fa9 @ 2024-07-11T17:53:10Z
       creationTimestamp: null
       labels:
         containerapp.apps.tanzu.vmware.com/app-name: java-rest-service
     spec:
       automountServiceAccountToken: false
       containers:
-      - image: marygabry1508/java-rest-service@sha256:0d1589d215d0bc481881242ef25aad22a7e18dde65e07d3fb05fd11086121a1a
+      - image: marygabry1508/java-rest-service@sha256:7880f7823293051221e84ae754cc845bc5fa65fa7b762b6c699fc1898058b697
         imagePullPolicy: IfNotPresent
         name: workload
         ports:
