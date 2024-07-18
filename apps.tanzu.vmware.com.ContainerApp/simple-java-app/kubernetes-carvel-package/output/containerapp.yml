@@ -1,0 +1,61 @@
+apiVersion: apps.tanzu.vmware.com/v1
+kind: ContainerApp
+metadata:
+  annotations:
+    apps.tanzu.vmware.com/promotable: ""
+    apps.tanzu.vmware.com/promote-group: ContainerApp/simple-java-app
+    containerapp.apps.tanzu.vmware.com/class: kubernetes
+  name: simple-java-app
+spec:
+  content:
+    buildTimestamp: "2024-07-18T20:24:13Z"
+    gitCommit: 8c0d1dd6de4d69505d2a3e111b9c0053bab6fb8e
+    gitURL: github.com/tanzu-build/tanzu-build-samples.git
+    packageRefName: simple-java-app.apps.local
+    summary: git:8c0d1dd @ 2024-07-18T20:24:13Z
+    version: 20240718.2024.13380
+  image: marygabry1508/simple-java-app@sha256:d4c22137506e119b9d0f2d3290d699633ecb4782e73f97471d77c78133dc6aa3
+  ports:
+  - name: main
+    port: 8080
+  relatedRefs:
+  - for: kubernetes.list-replicas
+    kind: Pod
+    labelSelector: containerapp.apps.tanzu.vmware.com/app-name=simple-java-app
+  - apiGroup: apps
+    for: kubernetes.service-binding-target
+    kind: Deployment
+    name: simple-java-app
+  - for: kubernetes.service-target
+    kind: Service
+    name: simple-java-app
+  - for: kubernetes.scale-replicas
+    keyPath: .data['values.yml']->[yaml].replicas
+    kind: Secret
+    name: simple-java-app-values
+  - for: kubernetes.scale-resources
+    keyPath: .data['values.yml']->[yaml].resources
+    kind: Secret
+    name: simple-java-app-values
+  - for: kubernetes.set-secret-env
+    keyPath: .data['values.yml']->[yaml].secretEnv
+    kind: Secret
+    name: simple-java-app-values
+  - apiGroup: packaging.carvel.dev
+    for: kubernetes.delete
+    kind: PackageInstall
+    name: simple-java-app
+  - apiGroup: data.packaging.carvel.dev
+    for: kubernetes.delete
+    kind: Package
+    name: simple-java-app.apps.local.20240718.2024.13380
+  - for: kubernetes.delete
+    kind: Secret
+    name: simple-java-app-values
+  - for: kubernetes.set-content-hash
+    keyPath: .data['values.yml']->[yaml].contentHash
+    kind: Secret
+    name: simple-java-app-values
+  resources:
+    cpu: 300m
+    memory: 1Gi

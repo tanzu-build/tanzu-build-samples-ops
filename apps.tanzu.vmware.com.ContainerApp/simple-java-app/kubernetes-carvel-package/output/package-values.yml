@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  values.yml: cmVzb3VyY2VzOgogIGNwdTogMzAwbQogIG1lbW9yeTogMUdpCg==
+kind: Secret
+metadata:
+  annotations:
+    apps.tanzu.vmware.com/promotable: ""
+    apps.tanzu.vmware.com/promote-group: ContainerApp/simple-java-app
+  creationTimestamp: null
+  name: simple-java-app-values
+type: Opaque

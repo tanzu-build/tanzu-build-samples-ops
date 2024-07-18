@@ -1,0 +1,31 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  annotations:
+    apps.tanzu.vmware.com/promotable: ""
+    apps.tanzu.vmware.com/promote-group: ContainerApp/simple-java-app
+  creationTimestamp: null
+  name: simple-java-app.apps.local.20240718.2024.13380
+spec:
+  refName: simple-java-app.apps.local
+  releasedAt: "2024-07-18T20:24:46Z"
+  template:
+    spec:
+      deploy:
+      - kapp:
+          rawOptions:
+          - --wait=false
+      fetch:
+      - imgpkgBundle:
+          image: index.docker.io/marygabry1508/simple-java-app@sha256:681e1e93ef3fed5cdb18128c1b067d47a0d8cb34b4dd3215e737293d59cefa04
+      template:
+      - ytt:
+          paths:
+          - config/
+      - kbld:
+          paths:
+          - .imgpkg/images.yml
+          - '-'
+  valuesSchema:
+    openAPIv3: null
+  version: 20240718.2024.13380
