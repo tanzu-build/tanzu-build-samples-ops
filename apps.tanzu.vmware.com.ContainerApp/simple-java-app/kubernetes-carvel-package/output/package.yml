@@ -5,10 +5,10 @@ metadata:
     apps.tanzu.vmware.com/promotable: ""
     apps.tanzu.vmware.com/promote-group: ContainerApp/simple-java-app
   creationTimestamp: null
-  name: simple-java-app.apps.local.20240719.1456.54952
+  name: simple-java-app.apps.local.20240805.1907.16800
 spec:
   refName: simple-java-app.apps.local
-  releasedAt: "2024-07-19T14:57:50Z"
+  releasedAt: "2024-08-05T19:10:12Z"
   template:
     spec:
       deploy:
@@ -17,7 +17,7 @@ spec:
           - --wait=false
       fetch:
       - imgpkgBundle:
-          image: index.docker.io/marygabry1508/simple-java-app@sha256:a3f6f4ce12125d34de9a696a059f8d9228da386fce8de7343d1e779d696c9b53
+          image: index.docker.io/marygabry1508/simple-java-app@sha256:e05aa9f2dbd640c3fbe9ad927e90c20309163ed4e9c38457da05a53cfe1e131d
       template:
       - ytt:
           paths:
@@ -28,4 +28,4 @@ spec:
           - '-'
   valuesSchema:
     openAPIv3: null
-  version: 20240719.1456.54952
+  version: 20240805.1907.16800
