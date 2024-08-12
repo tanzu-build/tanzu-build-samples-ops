@@ -10,7 +10,7 @@ spec:
   packageRef:
     refName: simple-java-app.apps.local
     versionSelection:
-      constraints: 20240805.1907.16800
+      constraints: 20240812.1449.56673
   serviceAccountName: carvel-package-installer
   values:
   - secretRef:
