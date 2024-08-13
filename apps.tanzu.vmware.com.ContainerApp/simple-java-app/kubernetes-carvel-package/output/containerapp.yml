@@ -8,13 +8,13 @@ metadata:
   name: simple-java-app
 spec:
   content:
-    buildTimestamp: "2024-08-13T13:01:00Z"
-    gitCommit: 8c0d1dd6de4d69505d2a3e111b9c0053bab6fb8e
+    buildTimestamp: "2024-08-13T15:20:43Z"
+    gitCommit: 46f6fc67627a406502e35bc76dd3d7d7bfe45acf
     gitURL: github.com/tanzu-build/tanzu-build-samples.git
     packageRefName: simple-java-app.apps.local
-    summary: git:8c0d1dd @ 2024-08-13T13:01:00Z
-    version: 20240813.1301.338
-  image: harbor.kirkware.net/library/simple-java-app@sha256:2e2e561a3bb3151ed6ef18470c877e3b5d9449c0aed594c66f3bb9a2de1a554b
+    summary: git:46f6fc6 @ 2024-08-13T15:20:43Z
+    version: 20240813.1520.43302
+  image: harbor.kirkware.net/library/simple-java-app@sha256:29eb57447aada8bc930b6323bfb2771d90365db5d7d9fef7dee1dfd510eee1a9
   ports:
   - name: main
     port: 8080
@@ -48,7 +48,7 @@ spec:
   - apiGroup: data.packaging.carvel.dev
     for: kubernetes.delete
     kind: Package
-    name: simple-java-app.apps.local.20240813.1301.338
+    name: simple-java-app.apps.local.20240813.1520.43302
   - for: kubernetes.delete
     kind: Secret
     name: simple-java-app-values
